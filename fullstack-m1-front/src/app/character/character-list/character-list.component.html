@@ -1,0 +1,55 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search by firstName"
+          [(ngModel)]="firstName"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchFirstName()"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Characters List</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let character of characters; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveCharacter(character, i)"
+        >
+          {{ character.firstName }}
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 card text-center">
+      <div *ngIf="currentCharacter" class="card-body">
+        <h4>Character</h4>
+        <div class="card-title">
+          <label><strong>FirstName:</strong></label> {{ currentCharacter.firstName }}
+        </div>
+        <div class="card-subtitle">
+          <label><strong>LastName:</strong></label>
+          {{ currentCharacter.lastName }}
+        </div>
+        <div class="card-text">
+          <label><strong>birthYear:</strong></label>
+          {{ currentCharacter.birthYear }}
+        </div>
+  
+        <button class="btn btn-warning" routerLink="/characters/{{ currentCharacter._id }}">
+          Edit
+        </button>
+      </div>
+    </div>
+  </div>
+  
